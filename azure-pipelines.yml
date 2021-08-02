@@ -18,8 +18,9 @@ steps:
     echo See https://aka.ms/yaml
   displayName: 'Run a multi-line script'
 
-- task: PublishPipelineArtifact@1
+- task: NuGetCommand@2
   inputs:
-    targetPath: '$(Pipeline.Workspace)'
-    artifact: 'newfeed'
-    publishLocation: 'pipeline'
+    command: 'push'
+    packagesToPush: '$(Build.ArtifactStagingDirectory)/**/*.nupkg;!$(Build.ArtifactStagingDirectory)/**/*.symbols.nupkg'
+    nuGetFeedType: 'internal'
+    publishVstsFeed: '5ad163d9-bac8-4fb2-9a56-81ce3678296d/077d6a2b-0e18-4d29-a8dc-60a13956f12c'
