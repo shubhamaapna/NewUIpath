@@ -1,4 +1,5 @@
 # Starter pipeline
+
 # Start with a minimal pipeline that you can customize to build and deploy your code.
 # Add steps that build, run tests, deploy, and more:
 # https://aka.ms/yaml
@@ -18,9 +19,12 @@ steps:
     echo See https://aka.ms/yaml
   displayName: 'Run a multi-line script'
 
-- task: NuGetCommand@2
+- task: UniversalPackages@0
   inputs:
-    command: 'push'
-    packagesToPush: '$(Build.ArtifactStagingDirectory)/**/*.json'
-    nuGetFeedType: 'internal'
-    publishVstsFeed: '5ad163d9-bac8-4fb2-9a56-81ce3678296d/077d6a2b-0e18-4d29-a8dc-60a13956f12c'
+    command: 'publish'
+    publishDirectory: '$(Build.ArtifactStagingDirectory)'
+    feedsToUsePublish: 'internal'
+    vstsFeedPublish: '5ad163d9-bac8-4fb2-9a56-81ce3678296d/077d6a2b-0e18-4d29-a8dc-60a13956f12c'
+    vstsFeedPackagePublish: 'successo'
+    versionOption: 'patch'
+    packagePublishDescription: 'first'
